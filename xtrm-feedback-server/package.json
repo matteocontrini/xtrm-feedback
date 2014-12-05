@@ -1,0 +1,17 @@
+{
+  "name": "xtrm-feedback-server",
+  "version": "0.1.0",
+  "description": "FLL XTRM project: feedback management server",
+  "dependencies": {
+    "express": "^4.10.4",
+    "socket.io": "^1.2.1"
+  },
+  "contributors":[{
+  	"name": "Matteo Contrini",
+  	"email": "matteo.contrini@marconirovereto.it"
+  }, {
+  	"name": "Luca Morandini",
+  	"email": "luca.morandini@marconirovereto.it"
+  }],
+  "license": "MIT"
+}
