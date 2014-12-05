@@ -15,7 +15,7 @@
 #include <Ethernet.h>
 
 byte macAddress[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x23, 0x58 };
-IPAddress server(192, 168, 1, 50); // Server IP address
+IPAddress serverAddress(192, 168, 1, 50); // Server IP address
 int serverPort = 3001; // Server port
 
 // Ethernet TCP client
@@ -30,7 +30,7 @@ void setupEthernet() {
   Serial.println("Device connected: " + Ethernet.localIP());
   
   // Attempt server connection
-  if (client.connect(server, serverPort)) {
+  if (client.connect(serverAddress, serverPort)) {
       Serial.println("Connected to the server!");
   }
   else {
