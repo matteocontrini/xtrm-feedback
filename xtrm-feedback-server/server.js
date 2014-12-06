@@ -19,7 +19,7 @@ var tcpServer = net.createServer(function (socket) {
 		data = message.toString().trim().split(';'); // es. sparkId;buttonId
 		console.log('TCP SERVER --> Got ' + data[1] + ' from ' + data[0]);
 		
-		buttonId = data[1].toInt();
+		buttonId = parseInt(data[1]);
 		// Check button ID validity
 		if (buttonId >= 0 && buttonId <= 3) {
 			// Forward message to the browser client
