@@ -10,15 +10,17 @@ var open = require('open');
 
 // Ports setup
 var httpServerPort = 3000;
-var sparkSocketPort = 3001;
+var socketPort = 3001;
 
 // TCP server
-// Listens for data coming from Sparks
-var tcpServer = net.createServer(function (socket) {
-	socket.addListener('data', function (message) {
-		// Split the payload
-		data = message.toString().trim().split(';'); // es. sparkId;buttonId
-		console.log('TCP SERVER --> Got ' + data[1] + ' from ' + data[0]);
+// Listens for data coming from clients (Spark, Arduino)
+var tcpServer = net.createServer();
+tcpServer.on('connection', function onConnection(socket) {
+	socket.on('data', function (message) {
+		// Split the payload es. sparkId;buttonId
+		data = message.toString().trim().split(';');
+		console.log('TCP SERVER --> Got ' +
+			data[1] + ' from ' + data[0]);
 		
 		buttonId = parseInt(data[1]);
 		// Check button ID validity
@@ -29,10 +31,11 @@ var tcpServer = net.createServer(function (socket) {
 		};
 	});
 });
-// Start listening
-tcpServer.listen(sparkSocketPort, function () {
-	console.log('TCP SERVER --> Listening on port ' + sparkSocketPort);
+tcpServer.on('listening', function onListening() {
+	console.log('TCP SERVER --> Listening on port ' + socketPort);
 });
+// Start listening
+tcpServer.listen(socketPort);
 
 
 // Web app
@@ -45,15 +48,16 @@ expressApp.use(express.static('html'));
 
 // Web server
 // Start listening
-httpServer.listen(httpServerPort, function(){
+httpServer.on('listening', function onListening() {
 	console.log('WEB SERVER --> Listening on port ' + httpServerPort);
 	console.log("\nLaunching the browser...\n");
-	open("http://localhost:" + httpServerPort);
+	//open("http://localhost:" + httpServerPort);
 });
+httpServer.listen(httpServerPort);
 
 // Web socket
 // Listen for connection
-io.on('connection', function onConnection(socket){
+io.on('connection', function onConnection(socket) {
 	console.log('WEB BROWSER SOCKET --> Client connected');
 
 	socket.on('disconnect', function onDisconnection() {
