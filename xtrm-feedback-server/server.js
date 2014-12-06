@@ -6,6 +6,7 @@ var express = require('express');
 var expressApp = express(); // express app
 var httpServer = require('http').Server(expressApp); // mount app on http server
 var io = require('socket.io')(httpServer); // socket.io socket
+var open = require('open');
 
 // Ports setup
 var httpServerPort = 3000;
@@ -23,6 +24,7 @@ var tcpServer = net.createServer(function (socket) {
 		// Check button ID validity
 		if (buttonId >= 0 && buttonId <= 3) {
 			// Forward message to the browser client
+			console.log('WEB BROWSER SOCKET --> Got valid data, forwarding');
 			io.emit('buttonPressed', message);
 		};
 	});
@@ -45,11 +47,17 @@ expressApp.use(express.static('html'));
 // Start listening
 httpServer.listen(httpServerPort, function(){
 	console.log('WEB SERVER --> Listening on port ' + httpServerPort);
+	console.log("\nLaunching the browser...\n");
+	open("http://localhost:" + httpServerPort);
 });
 
 // Web socket
 // Listen for connection
-io.on('connection', function(socket){
+io.on('connection', function onConnection(socket){
 	console.log('WEB BROWSER SOCKET --> Client connected');
+
+	socket.on('disconnect', function onDisconnection() {
+		console.log('WEB BROWSER SOCKET --> Client disconnected');
+	});
 });
 console.log('WEB BROWSER SOCKET --> Listening');
