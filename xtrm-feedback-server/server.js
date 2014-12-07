@@ -18,7 +18,8 @@ var tcpServer = net.createServer();
 tcpServer.on('connection', function onConnection(socket) {
 	socket.on('data', function (message) {
 		// Split the payload es. sparkId;buttonId
-		data = message.toString().trim().split(';');
+		messageString = message.toString().trim();
+		data = messageString.split(';');
 		console.log('TCP SERVER --> Got ' +
 			data[1] + ' from ' + data[0]);
 		
@@ -27,8 +28,11 @@ tcpServer.on('connection', function onConnection(socket) {
 		if (buttonId >= 0 && buttonId <= 3) {
 			// Forward message to the browser client
 			console.log('WEB BROWSER SOCKET --> Got valid data, forwarding');
-			io.emit('buttonPressed', message);
-		};
+			io.emit('buttonPressed', messageString);
+		}
+		else {
+			console.log("SERVER --> Got invalid data")
+		}
 	});
 });
 tcpServer.on('listening', function onListening() {
@@ -51,7 +55,7 @@ expressApp.use(express.static('html'));
 httpServer.on('listening', function onListening() {
 	console.log('WEB SERVER --> Listening on port ' + httpServerPort);
 	console.log("\nLaunching the browser...\n");
-	//open("http://localhost:" + httpServerPort);
+	open("http://localhost:" + httpServerPort);
 });
 httpServer.listen(httpServerPort);
 
