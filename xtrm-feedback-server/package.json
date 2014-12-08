@@ -1,6 +1,6 @@
 {
   "name": "xtrm-feedback-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "FLL XTRM project: feedback management server",
   "dependencies": {
     "express": "^4.10.4",

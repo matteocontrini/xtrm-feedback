@@ -2,23 +2,51 @@
 <html>
 	<head>
 		<title>FLL</title>
-		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="/jquery-1.11.1.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
+			var totalCount = 0;
+		
 			var socket = io();
 			socket.on('buttonPressed', function(msg){
-				$('#messages').append($('<li>').text(msg));
+				var messageString = msg.toString().trim();
+				if (messageString == "") {
+					return;
+				};
+				
+				var messagePieces = messageString.split(';');
+				var username = messagePieces[0];
+				var answer = parseInt(messagePieces[1]);
+				
+				var currentCount = $("#answer" + answer + "_count").text();
+				currentCount = parseInt(currentCount);
+				currentCount++;
+				$("#answer" + answer + "_count").text(currentCount);
+				
+				totalCount++;
+								
+				for (var i = 0; i < 4; i++) {
+					var peopleCount = $("#answer" + i + "_count").text();
+					peopleCount = parseInt(peopleCount);
+					
+					var percentage = peopleCount / totalCount * 100;
+					percentage = Math.round(percentage);
+					$("#answer" + i + "_percentage").text(percentage + " %");
+				}
+				
 			});
 		</script>
 		<style>
 			* { margin: 0; padding: 0; box-sizing: border-box; }
-			body { font: 13px Helvetica, Arial; }
-			#messages { list-style-type: none; margin: 0; padding: 0; }
-			#messages li { padding: 5px 10px; }
-			#messages li:nth-child(odd) { background: #eee; }
+			body { font: 23px Helvetica, Arial; padding: 20px; }
 		</style>
 	</head>
 	<body>
-		<ul id="messages"></ul>
+		<div>
+			Risposta 1: <span id="answer0_count">0</span> persone <span id="answer0_percentage">0 %</span><br>
+			Risposta 2: <span id="answer1_count">0</span> persone <span id="answer1_percentage">0 %</span><br>
+			Risposta 3: <span id="answer2_count">0</span> persone <span id="answer2_percentage">0 %</span><br>
+			Risposta 4: <span id="answer3_count">0</span> persone <span id="answer3_percentage">0 %</span>
+		</div>
 	</body>
 </html>
