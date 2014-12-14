@@ -1,8 +1,9 @@
 {
   "name": "xtrm-feedback-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "FLL XTRM project: feedback management server",
   "dependencies": {
+    "colog": "^1.0.4",
     "express": "^4.10.4",
     "open": "0.0.5",
     "socket.io": "^1.2.1"
