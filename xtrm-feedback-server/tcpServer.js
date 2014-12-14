@@ -26,7 +26,7 @@ tcpServer.on('connection', function onConnection(socket) {
 		// Split the payload es. deviceId;buttonId
 		var messageString = message.toString().trim();
 
-		if (messageString == "") {
+		if (messageString == '') {
 			return;
 		};
 		var data = messageString.split(';');

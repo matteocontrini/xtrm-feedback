@@ -8,7 +8,7 @@
 			var totalCount = 0;
 		
 			var socket = io();
-			socket.on('buttonPressed', function(msg){
+			socket.on('button:pressed', function(msg){
 				var messageString = msg.toString().trim();
 				if (messageString == "") {
 					return;
