@@ -29,6 +29,10 @@ app.use(express.static('html'));
 // Log listening
 httpServer.on('listening', function onListening() {
 	colog.headerSuccess('WEB    --> Listening on port ' + PORT);
-	colog.question("\nLaunching the browser...\n");
-	open('http://localhost:' + PORT);
+	
+	var silentMode = process.argv.slice(2).length;
+	if (!silentMode) {
+		colog.question("\nLaunching the browser...\n");
+		open('http://localhost:' + PORT);
+	};
 });

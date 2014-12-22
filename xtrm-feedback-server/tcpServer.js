@@ -8,29 +8,30 @@ exports.setPort = function(port) {
 	SOCKET_PORT = port;
 }
 
-exports.start = function(callback) {
+var callback;
+exports.start = function(_callback) {
 	// Start listening
 	tcpServer.listen(SOCKET_PORT);
+	callback = _callback;
 }
 
 var tcpServer = net.createServer();
 
 // Handle new connection
 tcpServer.on('connection', function onConnection(socket) {
-	colog.success('SERVER --> New connection ' + socket.remoteAddress);
+	colog.success('\nSERVER --> New connection ' + socket.remoteAddress);
 
 	// New message received
 	socket.on('data', function onData(message) {
-		console.log();
-
 		// Split the payload es. deviceId;buttonId
 		var messageString = message.toString().trim();
-
+		
+		// TODO check redundant transmissions
 		if (messageString == '') {
 			return;
 		};
 		var data = messageString.split(';');
-		colog.question('SERVER --> Got ' +
+		colog.question('\nSERVER --> Got ' +
 			data[1] + ' from ' + data[0]);
 
 		buttonId = parseInt(data[1]);
@@ -46,7 +47,7 @@ tcpServer.on('connection', function onConnection(socket) {
 	});
 
 	// Disconnection
-	socket.on('end', function onEnd() {
+	socket.on('close', function onClose() {
 		colog.warning('\nSERVER --> Client disconnected');
 	});
 });
