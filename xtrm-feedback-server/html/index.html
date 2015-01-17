@@ -1,52 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>FLL</title>
-		<script src="/jquery-1.11.1.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<script>
-			var totalCount = 0;
+<head>
+	<meta charset="utf-8"/>
+	<title>Xtrm Feedback | Risposte</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css">
+	<script src="/jquery.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	$(document).ready(function() {
+		var totalCount = 0;
 		
-			var socket = io();
-			socket.on('button:pressed', function(msg){
-				var messageString = msg.toString().trim();
-				if (messageString == "") {
-					return;
-				};
+		var socket = io();
+		socket.on('button:pressed', function(msg){
+			var messageString = msg.toString().trim();
+			if (messageString == '') {
+				return;
+			}
+			
+			var messagePieces = messageString.split(';');
+			var username = messagePieces[0];
+			var answer = +messagePieces[1];
+			
+			var currentCount = $('#answer' + answer + '_count').text();
+			currentCount = +currentCount;
+			currentCount++;
+			$('#answer' + answer + '_count').text(currentCount);
+			
+			totalCount++;
+							
+			for (var i = 0; i < 4; i++) {
+				var peopleCount = $('#answer' + i + '_count').text();
+				peopleCount = parseInt(peopleCount);
 				
-				var messagePieces = messageString.split(';');
-				var username = messagePieces[0];
-				var answer = parseInt(messagePieces[1]);
-				
-				var currentCount = $("#answer" + answer + "_count").text();
-				currentCount = parseInt(currentCount);
-				currentCount++;
-				$("#answer" + answer + "_count").text(currentCount);
-				
-				totalCount++;
-								
-				for (var i = 0; i < 4; i++) {
-					var peopleCount = $("#answer" + i + "_count").text();
-					peopleCount = parseInt(peopleCount);
-					
-					var percentage = peopleCount / totalCount * 100;
-					percentage = Math.round(percentage);
-					$("#answer" + i + "_percentage").text(percentage + " %");
-				}
-				
-			});
-		</script>
-		<style>
-			* { margin: 0; padding: 0; box-sizing: border-box; }
-			body { font: 23px Helvetica, Arial; padding: 20px; }
-		</style>
-	</head>
-	<body>
-		<div>
-			Risposta 1: <span id="answer0_count">0</span> persone <span id="answer0_percentage">0 %</span><br>
-			Risposta 2: <span id="answer1_count">0</span> persone <span id="answer1_percentage">0 %</span><br>
-			Risposta 3: <span id="answer2_count">0</span> persone <span id="answer2_percentage">0 %</span><br>
-			Risposta 4: <span id="answer3_count">0</span> persone <span id="answer3_percentage">0 %</span>
+				var percentage = peopleCount / totalCount * 100;
+				percentage = Math.round(percentage);
+				$('#answer' + i + '_percentage').text(percentage + ' %');
+			}
+			
+		});
+		
+		$('#settings_open').click(function() {
+			$('#options').slideDown('fast');
+		});
+		
+		$('#settings_close').click(function() {
+			$('#options').slideUp('fast');
+			scrollToTop();
+		});
+		
+		$('settings_reset').click(function() {
+			scrollToTop();
+		});
+	});
+
+	function scrollToTop() {
+		$('html,body').animate({
+			scrollTop: 0
+		}, 'fast');
+	}
+	</script>
+</head>
+<body>
+	<header id="top">
+		<h1>XTRM Feedback</h1>
+	</header>
+	<div id="main">
+		<!-- ========== ANSWERS ========== -->
+		<div id="answers">
+			<!-- left block -->
+			<div id="left_answers">
+				<div id="answer1">
+					<div class="number"><span>1</span></div>
+					<div class="people">
+						<div><span id="answer0_count">0<span> persone</div>
+						<span id="answer0_percentage">0 %</span>
+					</div>
+				</div>
+				<div id="answer2">
+					<div class="number"><span>2</span></div>
+					<div class="people">
+						<div><span id="answer1_count">0</span> persone</div>
+						<span id="answer1_percentage">0 %</span>
+					</div>
+				</div>
+			</div>
+			<!-- right block -->
+			<div id="right_answers">
+				<div id="answer3">
+					<div class="number"><span>3</span></div>
+					<div class="people">
+						<div><span id="answer2_count">0</span> persone</div>
+						<span id="answer2_percentage">0 %</span>
+					</div>
+				</div>
+				<div id="answer4">
+					<div class="number"><span>4</span></div>
+					<div class="people">
+						<div><span id="answer3_count">0</span> persone</div>
+						<span id="answer3_percentage">0 %</span>
+					</div>
+				</div>
+			</div>
 		</div>
-	</body>
+		<div id="left_col">
+			<!-- ========== SETTINGS ========== -->
+			<div id="settings">
+				<h1>IMPOSTAZIONI:</h1>
+				<a class="button" id="settings_open">OPZIONI</a>
+				<a class="button" id="settings_reset">RIPRISTINA</a>
+				<div id="options">
+					<form>
+						<div>
+							Numero Studenti Presenti: <input type="number" name="stud_number" min="1">
+						</div>
+						<div>
+							Risposta Corretta: 
+							<select name="right_answer">
+								<option value="0">1</option>
+								<option value="1">2</option>
+								<option value="2">3</option>
+								<option value="3">4</option>
+							</select>
+						</div>
+						<a class="button" id="settings_close">FATTO</a>
+					</form>
+				</div>
+			</div>
+			<!-- ========== RESULTS ========== -->
+			<div id="results">
+				<h1>RISULTATI:</h1>
+				<div>Studenti Rimanenti: <strong><span id="students_count">0</span></strong></div>
+				<div>Risposte Corrette Date: <strong><span id="right_answer_count">0</span></strong></div>
+			</div>
+		</div>
+		<div id="right_col">
+		<!-- ========== CHART ========== -->
+			<div id="chart">
+
+			</div>
+		</div>
+	</div>
+</body>
 </html>

@@ -1,0 +1,149 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+}
+div#main {
+    overflow: hidden;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #EDEDED;
+}
+header {
+    text-align: center;
+    background-color: #ED0E0E;
+    color: #fff;
+}
+
+/* =====================
+        TITLES
+===================== */
+h1 {
+    font-family: 'chelsea market';
+    font-size: 70px;
+    margin: 0;
+    padding: 30px;
+}
+#left_col h1 {
+    padding-bottom: 10px;
+    font-size: 35px;
+    color: #ED0E0E;
+}
+
+/* =====================
+        BUTTONS
+===================== */
+.button {
+    float: left;
+    cursor: pointer;
+    margin: 15px;
+    padding: 8px 30px;
+    text-decoration: none;
+    border: 2px solid black;
+    background-color: #c0c0c0;
+    color: #ED0E0E;
+    font-family: 'chelsea market';
+    font-size: 25px;
+    transition: all .4s;
+}
+.button:hover {
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: green;
+}
+
+/* =====================
+        ANSWERS
+===================== */
+#answers {
+    float: left;
+    width: 100%;
+    margin: 40px 0;
+}
+#left_answers {
+    float: left;
+    width: 50%;
+}
+#right_answers {
+    float: left;
+    width: 50%;
+}
+.number {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    margin: 15px;
+    color: #fff;
+    background-color: #32C743;
+    transition: all .3s;
+}
+.number:hover {
+    margin-left: 40px;
+}
+.number span {
+    line-height: 150px;
+    vertical-align: middle;
+    font-family: 'chelsea market';
+    font-size: 60px;
+}
+.people {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 30px;
+    line-height: 60px;
+    font-family: 'Arial';
+    text-align: left;
+}
+
+/* =====================
+        SETTINGS
+===================== */
+#left_col {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-right: 2px solid black;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Arial';
+}
+#options {
+    float: left;
+    display: none;
+    width: 100%;
+    text-align: left;
+}
+#options div {
+    margin: 15px;
+    font-size: 20px;
+}
+input {
+    height: 20px;
+}
+
+/* =====================
+        RESULTS
+===================== */
+#results {
+    float: left;
+    width: 100%;
+}
+#results div {
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* =====================
+        CHART
+===================== */
+#right_col {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Arial';
+}
