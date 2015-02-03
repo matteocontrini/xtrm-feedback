@@ -59,6 +59,18 @@ sup {
 	color: #fff;
 }
 #worldclass {
+	background: #06406c;
+	color: #ffffff;
+}
+#worldclass span {
+	background: #000000;
+	color: #ffffff;
+}
+#soluzione {
+	background: #0167a2;
+	color: #ffffff;
+}
+#torna {
 	background: #348fd4;
 	color: #06406c;
 }
