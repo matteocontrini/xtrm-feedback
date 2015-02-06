@@ -14,6 +14,9 @@ exports.setPort = function (port) {
 exports.start = function() {
 	httpServer.listen(PORT);
 };
+exports.stop = function() {
+	httpServer.close();
+};
 exports.server = httpServer;
 
 // Root request
@@ -24,12 +27,12 @@ app.get('/', function(req, res){
 });
 
 // Static files
-app.use(express.static('html'));
+app.use(express.static(__dirname + '/html'));
 
 // Log listening
 httpServer.on('listening', function onListening() {
 	colog.headerSuccess('WEB    --> Listening on port ' + PORT);
-	
+
 	var silentMode = process.argv.slice(2).length;
 	if (!silentMode) {
 		colog.question("\nLaunching the browser...\n");

@@ -6,14 +6,18 @@ var colog 	= require('colog');
 var SOCKET_PORT = 0;
 exports.setPort = function(port) {
 	SOCKET_PORT = port;
-}
+};
 
 var callback;
 exports.start = function(_callback) {
 	// Start listening
 	tcpServer.listen(SOCKET_PORT);
 	callback = _callback;
-}
+};
+
+exports.stop = function(stop) {
+	tcpServer.close();
+};
 
 var tcpServer = net.createServer();
 
@@ -25,7 +29,7 @@ tcpServer.on('connection', function onConnection(socket) {
 	socket.on('data', function onData(message) {
 		// Split the payload es. deviceId;buttonId
 		var messageString = message.toString().trim();
-		
+
 		// TODO check redundant transmissions
 		if (messageString == '') {
 			return;

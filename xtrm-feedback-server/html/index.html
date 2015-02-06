@@ -7,77 +7,26 @@
 	<link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css">
 	<script src="/jquery.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script>
-	$(document).ready(function() {
-		var totalCount = 0;
-		
-		var socket = io();
-		socket.on('button:pressed', function(msg){
-			var messageString = msg.toString().trim();
-			if (messageString == '') {
-				return;
-			}
-			
-			var messagePieces = messageString.split(';');
-			var username = messagePieces[0];
-			var answer = +messagePieces[1];
-			
-			var currentCount = $('#answer' + answer + '_count').text();
-			currentCount = +currentCount;
-			currentCount++;
-			$('#answer' + answer + '_count').text(currentCount);
-			
-			totalCount++;
-							
-			for (var i = 0; i < 4; i++) {
-				var peopleCount = $('#answer' + i + '_count').text();
-				peopleCount = parseInt(peopleCount);
-				
-				var percentage = peopleCount / totalCount * 100;
-				percentage = Math.round(percentage);
-				$('#answer' + i + '_percentage').text(percentage + ' %');
-			}
-			
-		});
-		
-		$('#settings_open').click(function() {
-			$('#options').slideDown('fast');
-		});
-		
-		$('#settings_close').click(function() {
-			$('#options').slideUp('fast');
-			scrollToTop();
-		});
-		
-		$('settings_reset').click(function() {
-			scrollToTop();
-		});
-	});
-
-	function scrollToTop() {
-		$('html,body').animate({
-			scrollTop: 0
-		}, 'fast');
-	}
-	</script>
+	<script src="/core.js"></script>
 </head>
 <body>
-	<header id="top">
-		<h1>XTRM Feedback</h1>
+	<header id="header">
+		<!-- <h1>XTRM Feedback</h1> -->
+		<img src="logo_small.png" alt="XTRM Feedback" />
 	</header>
 	<div id="main">
 		<!-- ========== ANSWERS ========== -->
 		<div id="answers">
 			<!-- left block -->
 			<div id="left_answers">
-				<div id="answer1">
+				<div id="answer0">
 					<div class="number"><span>1</span></div>
 					<div class="people">
-						<div><span id="answer0_count">0<span> persone</div>
+						<div><span id="answer0_count">0</span> persone</div>
 						<span id="answer0_percentage">0 %</span>
 					</div>
 				</div>
-				<div id="answer2">
+				<div id="answer1">
 					<div class="number"><span>2</span></div>
 					<div class="people">
 						<div><span id="answer1_count">0</span> persone</div>
@@ -87,14 +36,14 @@
 			</div>
 			<!-- right block -->
 			<div id="right_answers">
-				<div id="answer3">
+				<div id="answer2">
 					<div class="number"><span>3</span></div>
 					<div class="people">
 						<div><span id="answer2_count">0</span> persone</div>
 						<span id="answer2_percentage">0 %</span>
 					</div>
 				</div>
-				<div id="answer4">
+				<div id="answer3">
 					<div class="number"><span>4</span></div>
 					<div class="people">
 						<div><span id="answer3_count">0</span> persone</div>
@@ -103,6 +52,10 @@
 				</div>
 			</div>
 		</div>
+		<div class="center">
+			Totale risposte: <span id="total_count"></span>
+		</div>
+		<div style="clear: both"></div>
 		<div id="left_col">
 			<!-- ========== SETTINGS ========== -->
 			<div id="settings">
@@ -112,10 +65,10 @@
 				<div id="options">
 					<form>
 						<div>
-							Numero Studenti Presenti: <input type="number" name="stud_number" min="1">
+							Numero studenti presenti: <input type="number" name="stud_number" min="1">
 						</div>
 						<div>
-							Risposta Corretta: 
+							Risposta Corretta:
 							<select name="right_answer">
 								<option value="0">1</option>
 								<option value="1">2</option>

@@ -1,18 +1,31 @@
-﻿body {
+body {
     padding: 0;
     margin: 0;
+    font-family: Arial;
+    font-size: 18px;
 }
 div#main {
     overflow: hidden;
     width: 900px;
     margin: 0 auto;
-    text-align: center;
     background-color: #EDEDED;
+}
+.center {
+    font-size: 22px;
+    margin: 30px auto;
+    clear: both;
+    text-align: center;
+    float: left;
+    width: 100%;
 }
 header {
     text-align: center;
     background-color: #ED0E0E;
     color: #fff;
+}
+#header img {
+    height: 80px;
+    margin: 30px;
 }
 
 /* =====================
@@ -58,28 +71,45 @@ h1 {
 #answers {
     float: left;
     width: 100%;
-    margin: 40px 0;
+    margin: 40px 0 0 0;
 }
 #left_answers {
     float: left;
     width: 50%;
 }
+#left_answers > div {
+    float: right;
+    margin-top: 40px;
+    margin-right: 50px;
+}
 #right_answers {
     float: left;
     width: 50%;
+}
+#right_answers > div {
+    margin-top: 40px;
 }
 .number {
     display: inline-block;
     width: 150px;
     height: 150px;
     text-align: center;
-    margin: 15px;
+    margin-right: 15px;
     color: #fff;
     background-color: #32C743;
     transition: all .3s;
 }
-.number:hover {
-    margin-left: 40px;
+.number.red {
+    background-color: #CF000F;
+}
+.number.green {
+    background-color: #00B16A;
+}
+#left_answers .number:hover {
+    margin-right: 20px;
+}
+#right_answers .number:hover {
+    margin-left: 10px;
 }
 .number span {
     line-height: 150px;

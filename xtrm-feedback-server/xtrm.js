@@ -25,3 +25,17 @@ io.on('connection', function onConnection(socket) {
 		colog.warning('WEB    --> Client disconnected');
 	});
 });
+
+process.on('SIGINT', function() {
+	stopPlease();
+});
+
+process.on('SIGTERM', function() {
+	stopPlease();
+});
+
+function stopPlease() {
+	tcpServer.stop();
+	httpServer.stop();
+	process.exit();
+}
