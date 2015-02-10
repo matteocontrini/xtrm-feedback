@@ -35,6 +35,14 @@ function scrollToTop() {
 
 function startSocket() {
     var socket = io();
+    socket.on('connect', function() {
+        console.log('Connected');
+        connectionStatus.connected();
+    });
+    socket.on('disconnect', function() {
+        console.log('Disconnected');
+        connectionStatus.disconnected(); 
+    });
     socket.on('button:pressed', function(msg){
         var messageString = msg.toString().trim();
         if (messageString == '') {
@@ -69,6 +77,19 @@ function startSocket() {
 
     });
 }
+
+var connectionStatus = {
+    onlineText: 'ONLINE',
+    offlineText: 'OFFLINE',
+    connected: function() {
+        $("#status-indicator").removeClass('bg-red').addClass('bg-green');
+        $("#status-desc").text(this.onlineText);
+    },
+    disconnected: function() {
+        $("#status-indicator").removeClass('bg-green').addClass('bg-red');
+        $("#status-desc").text(this.offlineText);
+    }
+};
 
 function showCorrectAnswer() {
     for (var i = 0; i < 4; i++) {

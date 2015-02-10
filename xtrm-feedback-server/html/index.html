@@ -11,10 +11,13 @@
 </head>
 <body>
 	<header id="header">
-		<!-- <h1>XTRM Feedback</h1> -->
 		<img src="logo_small.png" alt="XTRM Feedback" />
 	</header>
 	<div id="main">
+		<div id="status">
+			<span id="status-indicator" class="circle bg-red"></span>
+			<span id="status-desc">OFFLINE</span>
+		</div>
 		<!-- ========== ANSWERS ========== -->
 		<div id="answers">
 			<!-- left block -->
@@ -53,7 +56,7 @@
 			</div>
 		</div>
 		<div class="center">
-			Totale risposte: <span id="total_count"></span>
+			Totale risposte: <span id="total_count">0</span>
 		</div>
 		<div style="clear: both"></div>
 		<div id="left_col">
@@ -67,15 +70,6 @@
 						<div>
 							Numero studenti presenti: <input type="number" name="stud_number" min="1">
 						</div>
-						<div>
-							Risposta Corretta:
-							<select name="right_answer">
-								<option value="0">1</option>
-								<option value="1">2</option>
-								<option value="2">3</option>
-								<option value="3">4</option>
-							</select>
-						</div>
 						<a class="button" id="settings_close">FATTO</a>
 					</form>
 				</div>
@@ -83,8 +77,8 @@
 			<!-- ========== RESULTS ========== -->
 			<div id="results">
 				<h1>RISULTATI:</h1>
-				<div>Studenti Rimanenti: <strong><span id="students_count">0</span></strong></div>
-				<div>Risposte Corrette Date: <strong><span id="right_answer_count">0</span></strong></div>
+				<div>Studenti rimanenti: <strong><span id="students_count">0</span></strong></div>
+				<div>Risposte corrette date: <strong><span id="right_answer_count">0</span></strong></div>
 			</div>
 		</div>
 		<div id="right_col">

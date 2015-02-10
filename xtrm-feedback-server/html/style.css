@@ -29,6 +29,34 @@ header {
 }
 
 /* =====================
+        STATUS
+===================== */
+#status {
+    float: right;
+    margin: 10px 15px 0 0;
+}
+.circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.bg-red {
+    background: red;
+}
+.bg-green {
+    background: green;
+}
+#status-indicator {
+    transition: 0.5s all;
+}
+#status-desc {
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* =====================
         TITLES
 ===================== */
 h1 {
@@ -71,7 +99,7 @@ h1 {
 #answers {
     float: left;
     width: 100%;
-    margin: 40px 0 0 0;
+    margin: 0;
 }
 #left_answers {
     float: left;
