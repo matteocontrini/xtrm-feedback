@@ -5,7 +5,7 @@ How can we improve the way people learn at school? Our project consists of a Spa
 
 ## Current status
 
-- Node.js server 0.2.0
+- Node.js server 0.3.1
   - the TCP server gets data from the boards (Arduino, Spark)
   - the data is forwaded to the browser through a Socket.IO JavaScript socket
   - the Express app mounted on an HTTP server shows the page content
