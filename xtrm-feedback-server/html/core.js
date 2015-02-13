@@ -70,7 +70,7 @@ function startSocket() {
             var peopleCount = $('#answer' + i + '_count').text();
             peopleCount = parseInt(peopleCount);
 
-            var percentage = peopleCount / totalCount * 100;
+            var percentage = peopleCount / instance.totalCount * 100;
             percentage = Math.round(percentage);
             $('#answer' + i + '_percentage').text(percentage + ' %');
         }
