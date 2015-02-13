@@ -70,6 +70,30 @@ sup {
 	background: #0167a2;
 	color: #ffffff;
 }
+#soluzione a {
+	color: #ffffff;
+	text-decoration: underline;
+}
+#sol-prototipo {
+	background: #ffffff;
+	color: #000000;
+}
+#sol-tx {
+	background: #4c0d09;
+	color: #d3b2af;
+}
+#sol-rx {
+	background: #cc4037;
+	color: #4c0d09;
+}
+#sol-rx span {
+	background: #000000;
+	color: #ffffff;
+}
+#why {
+	background: #000000;
+	color: #ffffff;
+}
 #torna {
 	background: #348fd4;
 	color: #06406c;
