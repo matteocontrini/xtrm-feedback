@@ -5,11 +5,11 @@ How can we improve the way people learn at school? Our project consists of a Spa
 
 ## Current status
 
-- Node.js server 0.3.1
+- Node.js server 0.4.0
   - the TCP server gets data from the boards (Arduino, Spark)
   - the data is forwaded to the browser through a Socket.IO JavaScript socket
   - the Express app mounted on an HTTP server shows the page content
-  - the web page (not complete) shows statistics about the collected data
+  - the web page shows statistics about the collected data
 - Arduino sketch
   - the board detects when a button is pressed
   - the Ethernet shield is used to send the data to the Node.js server
