@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="utf-8"/>
 	<title>Xtrm Feedback | Risposte</title>
+	
+	<!-- Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	
+	<!-- Chelsea Market font -->
 	<link href="http://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet" type="text/css">
-	<script src="/jquery.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="/core.js"></script>
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
 </head>
 <body>
 	<header id="header">
@@ -15,78 +24,93 @@
 	</header>
 	<div id="main">
 		<div id="status">
-			<span id="status-indicator" class="circle bg-red"></span>
-			<span id="status-desc">OFFLINE</span>
+			<span id="status-indicator" class="circle bg-red" data-bind="css: { 'bg-green': connectionStatus(), 'bg-red': !connectionStatus() }"></span>
+			<span id="status-desc" data-bind="text: connectionStatus() ? 'ONLINE' : 'OFFLINE'"></span>
 		</div>
 		<!-- ========== ANSWERS ========== -->
 		<div id="answers">
 			<!-- left block -->
-			<div id="left_answers">
-				<div id="answer0">
-					<div class="number"><span>1</span></div>
+			<div id="left-answers">
+				<div>
+					<div class="number" data-bind="click: function() { correctAnswerId(0) }, css: correctAnswerClass(0)"><span>1</span></div>
 					<div class="people">
-						<div><span id="answer0_count">0</span> persone</div>
-						<span id="answer0_percentage">0 %</span>
+						<div><span data-bind="text: answersSummary()[0]"></span> persone</div>
+						<span data-bind="text: percentage(0)"></span>
 					</div>
 				</div>
-				<div id="answer1">
-					<div class="number"><span>2</span></div>
+				<div>
+					<div class="number" data-bind="click: function() { correctAnswerId(1) }, css: correctAnswerClass(1)"><span>2</span></div>
 					<div class="people">
-						<div><span id="answer1_count">0</span> persone</div>
-						<span id="answer1_percentage">0 %</span>
+						<div><span data-bind="text: answersSummary()[1]"></span> persone</div>
+						<span data-bind="text: percentage(1)"></span>
 					</div>
 				</div>
 			</div>
 			<!-- right block -->
-			<div id="right_answers">
-				<div id="answer2">
-					<div class="number"><span>3</span></div>
+			<div id="right-answers">
+				<div>
+					<div class="number" data-bind="click: function() { correctAnswerId(2) }, css: correctAnswerClass(2)"><span>3</span></div>
 					<div class="people">
-						<div><span id="answer2_count">0</span> persone</div>
-						<span id="answer2_percentage">0 %</span>
+						<div><span data-bind="text: answersSummary()[2]"></span> persone</div>
+						<span data-bind="text: percentage(2)"></span>
 					</div>
 				</div>
-				<div id="answer3">
-					<div class="number"><span>4</span></div>
+				<div>
+					<div class="number" data-bind="click: function() { correctAnswerId(3) }, css: correctAnswerClass(3)"><span>4</span></div>
 					<div class="people">
-						<div><span id="answer3_count">0</span> persone</div>
-						<span id="answer3_percentage">0 %</span>
+						<div><span data-bind="text: answersSummary()[3]"></span> persone</div>
+						<span data-bind="text: percentage(3)"></span>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="center">
-			Totale risposte: <span id="total_count">0</span>
-		</div>
+		
 		<div style="clear: both"></div>
-		<div id="left_col">
-			<!-- ========== SETTINGS ========== -->
-			<div id="settings">
-				<h1>IMPOSTAZIONI:</h1>
-				<a class="button" id="settings_open">OPZIONI</a>
-				<a class="button" id="settings_reset">RIPRISTINA</a>
-				<div id="options">
-					<form>
-						<div>
-							Numero studenti presenti: <input type="number" name="stud_number" min="1">
-						</div>
-						<a class="button" id="settings_close">FATTO</a>
-					</form>
+		
+		<aside id="summary">
+			<div class="col left">
+				<!-- ========== RESULTS ========== -->
+				<div>
+					<h2>RISULTATI:</h2>
+					<div>Totale risposte: <strong><span data-bind="text: totalCount"></span></strong></div>
+					<div>Risposte rimanenti: <strong><span>0</span></strong></div>
+					<div>Studenti totali: <input type="text" style="width: 40px" /></div>
 				</div>
+				
+				<!-- ========== SETTINGS ========== -->
+				<!-- <div id="settings">
+					<h1>IMPOSTAZIONI:</h1>
+					<a class="button" id="settings_open">OPZIONI</a>
+					<a class="button" id="settings_reset">RIPRISTINA</a>
+					<div id="options">
+						<form>
+							<div>
+								Numero studenti presenti: <input type="number" name="stud_number" min="1">
+							</div>
+							<a class="button" id="settings_close">FATTO</a>
+						</form>
+					</div>
+				</div> -->
 			</div>
-			<!-- ========== RESULTS ========== -->
-			<div id="results">
-				<h1>RISULTATI:</h1>
-				<div>Studenti rimanenti: <strong><span id="students_count">0</span></strong></div>
-				<div>Risposte corrette date: <strong><span id="right_answer_count">0</span></strong></div>
+			<div class="col">
+				<div class="center"><a class="button" data-bind="click: function() { alert('Non disponibile') }">ESPORTA DATI</a></div>
 			</div>
-		</div>
-		<div id="right_col">
-		<!-- ========== CHART ========== -->
-			<div id="chart">
-
-			</div>
-		</div>
+		</aside>
+		
+		<div style="clear:both"></div>
+		<!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
 	</div>
+	
+	<!-- jQuery -->
+	<script src="/js/jquery.js"></script>
+	
+	<!-- Socket.IO -->
+	<script src="/socket.io/socket.io.js"></script>
+	
+	<!-- Knockout -->
+	<script src="/js/knockout.js"></script>
+	
+	<!-- Custom scripts -->
+	<script src="/js/core.js"></script>
 </body>
 </html>

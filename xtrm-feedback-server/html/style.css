@@ -1,6 +1,20 @@
+/* html5doctor.com Reset v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/) - http://cssreset.com */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;box-sizing: border-box}
+body{line-height:1}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+
 body {
-    padding: 0;
-    margin: 0;
     font-family: Arial;
     font-size: 18px;
 }
@@ -11,13 +25,17 @@ div#main {
     background-color: #EDEDED;
 }
 .center {
-    font-size: 22px;
-    margin: 30px auto;
-    clear: both;
-    text-align: center;
-    float: left;
-    width: 100%;
+	text-align: center;
 }
+.col {
+    float: left;
+    width: 50%;
+    overflow: hidden;
+}
+
+/* =====================
+        HEADER
+===================== */
 header {
     text-align: center;
     background-color: #ED0E0E;
@@ -59,14 +77,15 @@ header {
 /* =====================
         TITLES
 ===================== */
-h1 {
-    font-family: 'chelsea market';
-    font-size: 70px;
-    margin: 0;
-    padding: 30px;
+h1, h2 {
+	font-family: 'Chelsea Market';
 }
-#left_col h1 {
-    padding-bottom: 10px;
+h1 {
+    font-size: 70px;
+    padding: 30px 0;
+}
+h2 {
+    padding: 10px 0;
     font-size: 35px;
     color: #ED0E0E;
 }
@@ -75,17 +94,20 @@ h1 {
         BUTTONS
 ===================== */
 .button {
-    float: left;
-    cursor: pointer;
+    display: inline-block;
     margin: 15px;
     padding: 8px 30px;
-    text-decoration: none;
+    
     border: 2px solid black;
     background-color: #c0c0c0;
     color: #ED0E0E;
-    font-family: 'chelsea market';
+    
+    font-family: 'Chelsea Market';
     font-size: 25px;
+    text-decoration: none;
+    
     transition: all .4s;
+    cursor: pointer;
 }
 .button:hover {
     border-top-left-radius: 15px;
@@ -101,20 +123,20 @@ h1 {
     width: 100%;
     margin: 0;
 }
-#left_answers {
+#left-answers {
     float: left;
     width: 50%;
 }
-#left_answers > div {
+#left-answers > div {
     float: right;
     margin-top: 40px;
     margin-right: 50px;
 }
-#right_answers {
+#right-answers {
     float: left;
     width: 50%;
 }
-#right_answers > div {
+#right-answers > div {
     margin-top: 40px;
 }
 .number {
@@ -124,7 +146,7 @@ h1 {
     text-align: center;
     margin-right: 15px;
     color: #fff;
-    background-color: #32C743;
+    background-color: #CF000F;
     transition: all .3s;
 }
 .number.red {
@@ -133,10 +155,10 @@ h1 {
 .number.green {
     background-color: #00B16A;
 }
-#left_answers .number:hover {
+#left-answers .number:hover {
     margin-right: 20px;
 }
-#right_answers .number:hover {
+#right-answers .number:hover {
     margin-left: 10px;
 }
 .number span {
@@ -155,42 +177,24 @@ h1 {
 }
 
 /* =====================
-        SETTINGS
+        SUMMARY
 ===================== */
-#left_col {
-    float: left;
-    width: 50%;
-    box-sizing: border-box;
-    overflow: hidden;
+
+#summary .col {
+	margin: 50px 0 30px 0;
+}
+#summary .left {
     border-right: 2px solid black;
+    
     text-align: center;
-    margin-bottom: 40px;
-    font-family: 'Arial';
 }
-#options {
-    float: left;
-    display: none;
-    width: 100%;
-    text-align: left;
-}
-#options div {
-    margin: 15px;
-    font-size: 20px;
+#summary .left div {
+	padding: 10px;
+	font-size: 20px;
 }
 input {
+	font-size: 20px;
     height: 20px;
-}
-
-/* =====================
-        RESULTS
-===================== */
-#results {
-    float: left;
-    width: 100%;
-}
-#results div {
-    padding: 10px;
-    font-size: 20px;
 }
 
 /* =====================
