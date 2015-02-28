@@ -28,8 +28,10 @@ function XtrmViewModel() {
 		});
 	}
 	
-	// TODO total students
+	// Total students
+	self.totalStudents = ko.observable(0);
 	
+	// Start Socket.IO connection
 	startSocket();
 }
 

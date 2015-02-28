@@ -21,7 +21,7 @@
 </head>
 <body>
 	<header id="header">
-		<img src="logo_small.png" alt="XTRM Feedback" />
+		<img src="logo-small.png" alt="XTRM Feedback" />
 	</header>
 	<div id="main">
 		<div id="status">
@@ -74,8 +74,8 @@
 				<div>
 					<h2>RISULTATI:</h2>
 					<div>Totale risposte: <strong><span data-bind="text: totalCount"></span></strong></div>
-					<div>Risposte rimanenti: <strong><span>0</span></strong></div>
-					<div>Studenti totali: <input type="text" style="width: 40px" /></div>
+					<div>Risposte rimanenti: <strong><span data-bind="text: totalStudents() - totalCount()">0</span></strong></div>
+					<div>Studenti presenti: <input type="text" data-bind="value: totalStudents, valueUpdate: 'keyup'" style="width: 40px" /></div>
 				</div>
 				
 				<!-- ========== SETTINGS ========== -->
