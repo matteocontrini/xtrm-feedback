@@ -31,6 +31,14 @@ function XtrmViewModel() {
 	// Total students
 	self.totalStudents = ko.observable(0);
 	
+	// Export
+	self.dataExport = function() {
+		var counts = self.answersSummary().map(function(item) {
+			return item();
+		}).join('/');
+		$.fileDownload('/export/' + counts);
+	}
+	
 	// Start Socket.IO connection
 	startSocket();
 }

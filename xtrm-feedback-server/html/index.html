@@ -94,16 +94,17 @@
 				</div> -->
 			</div>
 			<div class="col">
-				<div class="center"><a class="button" data-bind="click: function() { alert('Non disponibile') }">ESPORTA DATI</a></div>
+				<div class="center"><a class="button" data-bind="click: dataExport">ESPORTA DATI</a></div>
 			</div>
 		</aside>
 		
 		<div style="clear:both"></div>
-		<!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
+		<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
 	</div>
 	
 	<!-- jQuery -->
 	<script src="/js/jquery.js"></script>
+	<script src="/js/jquery.fileDownload.js"></script>
 	
 	<!-- Socket.IO -->
 	<script src="/socket.io/socket.io.js"></script>
