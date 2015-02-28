@@ -33,10 +33,10 @@ app.get('/', function(req, res){
 // Export to Excel .xlsx
 app.get('/export/:a/:b/:c/:d', function(req, res) {
 	sheet.update('A2', moment().format('D/M/YYYY HH:mm'));
-	sheet.update('B6', +req.params.a);
-	sheet.update('B7', +req.params.b);
-	sheet.update('B8', +req.params.c);
-	sheet.update('B9', +req.params.d);
+	sheet.update('B5', +req.params.a);
+	sheet.update('B6', +req.params.b);
+	sheet.update('B7', +req.params.c);
+	sheet.update('B8', +req.params.d);
 	
 	var fileName = Math.round(Date.now() / 1000) + '.xlsx';
 	var dirFileName = __dirname + '/xlsx/' + fileName;
