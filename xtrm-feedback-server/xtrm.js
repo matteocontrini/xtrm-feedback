@@ -1,4 +1,5 @@
 var colog 		= require('colog');
+require('pmx').init();
 
 colog.question('**** RUNNING ****\n');
 

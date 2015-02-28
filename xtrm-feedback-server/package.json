@@ -6,6 +6,7 @@
     "colog": "^1.0.4",
     "express": "^4.10.4",
     "open": "0.0.5",
+    "pmx": "^0.3.3",
     "socket.io": "^1.2.1"
   },
   "contributors": [
