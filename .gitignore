@@ -2,3 +2,5 @@ node_modules
 *.exe
 *.bin
 *.db
+xtrm-feedback-server/xlsx/*
+!xtrm-feedback-server/xlsx/template.xlsx
